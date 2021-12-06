@@ -1,0 +1,7 @@
+{
+	"address": "http://pilot.identoi.com/CelestaWebService/Mbcp2?output=json",
+	"primaryColor": "#009CAB",
+	"secondaryColor": "#0948AB",
+	"fontFamily": "Roboto",
+	"logUsage": true
+}

@@ -25,8 +25,7 @@ function History(props) {
             </main>
         </div>
     );
+}
 
-  }
 
-
-  export default History;
+export default History;

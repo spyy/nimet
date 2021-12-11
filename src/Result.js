@@ -1,17 +1,31 @@
+import Row from './Row';
 
-function Result(props) {
+import * as tilasto from './config/sukunimitilasto-2021-08-09-dvv.json';
+
+
+const Result = props => {
+
+  const filter = name => {
+    let re = new RegExp('^' + props.alphabet, 'i');
+
+    return name.match(re) ? true : false;
+  }
+
+  const res = tilasto.Sukunimi.filter(name => filter(name));
+  const names = res.sort()
+
   return (
-    <div class="container">
+    <div className="container">
       <main>
-        <div class="float-end py-3">
-          <button type="button" class="btn-close" aria-label="Close"></button>
+        <div className="float-end py-3">
+          <button type="button" className="btn-close" aria-label="Close" onClick={() => props.onClose()}></button>
         </div>
 
-        <div class="float-none py-5">
-          
-          <hr class="my-3" />
+        <div className="float-none py-5">
 
-          <table class="table table-striped">
+          <hr className="my-3" />
+
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -20,23 +34,16 @@ function Result(props) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-              </tr>
+              {
+                names.map((element, index) => {
+                  return (
+                    <Row key={index} number={index + 1} name={element} abbreviation={4} />
+                  );
+                })
+              }
             </tbody>
           </table>
-    
+
         </div>
       </main>
     </div>

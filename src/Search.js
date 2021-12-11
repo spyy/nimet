@@ -2,11 +2,7 @@ import alphabets from './config/alphabets.json';
 import Alphabet from './Alphabet';
 
 
-
 function Search(props) {
-  const onChecked = alphabet => {
-    console.log(alphabet);
-  }
 
   return (
     <div className="container">
@@ -22,9 +18,9 @@ function Search(props) {
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div className="row g-3">
               <div className="col">
-                <select className="form-select" id="state" required="" onChange>
-                  <option>Sukunimi ja lyhenne</option>
-                  <option>Ainoastaan lyhenne</option>
+                <select className="form-select" id="state" required="" value={props.selection} onChange={event => props.onChange(event.target.value)}>
+                  <option value="nimi">Sukunimi ja lyhenne</option>
+                  <option value="lyhenne">Ainoastaan lyhenne</option>
                 </select>
               </div>
             </div>
@@ -38,7 +34,7 @@ function Search(props) {
                 {
                   alphabets.map((element, index) => {
                     return (
-                      <Alphabet key={index} alphabet={element} checked={false} onChecked={alphabet => onChecked(alphabet)} />
+                      <Alphabet key={index} alphabet={element} checked={props.alphabet} onChecked={val => props.onChecked(val)} />
                     );
                   })
                 }
@@ -47,7 +43,7 @@ function Search(props) {
 
             <hr className="my-4" />
 
-            <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => console.log('onPress')}>Hae sukunimistä</button>
+            <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()}>Hae sukunimistä</button>
           </div>
         </div>
       </main>

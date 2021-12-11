@@ -1,6 +1,8 @@
 import alphabets from './config/alphabets.json';
 import Alphabet from './Alphabet';
 
+
+
 function Search(props) {
   const onChecked = alphabet => {
     console.log(alphabet);
@@ -15,14 +17,14 @@ function Search(props) {
 
           <hr className="my-4" />
 
-          <h4 className="mb-3">Lyhenteen pituus</h4>
+          <h4 className="mb-3">Haun tulos</h4>
 
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div className="row g-3">
               <div className="col">
-                <select className="form-select" id="state" required="">
-                  <option>max 2 ensimmäistä kirjainta</option>
-                  <option>max 4 ensimmäistä kirjainta</option>
+                <select className="form-select" id="state" required="" onChange>
+                  <option>Sukunimi ja lyhenne</option>
+                  <option>Ainoastaan lyhenne</option>
                 </select>
               </div>
             </div>

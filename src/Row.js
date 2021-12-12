@@ -1,17 +1,21 @@
 const Row = props => {
-  const abbreviation = () => {
-    const replaced = props.name.replace('-', '');
+  if (props.abbreviationOnly) {
+    return (
+      <tr>
+        <th scope="row"># ({ props.number })</th>
+        <td>{ props.abbreviation }</td>
+      </tr>
+    );
 
-    return replaced.slice(0, props.abbreviation);
+  } else {
+    return (
+      <tr>
+        <th scope="row">{ props.number }</th>
+        <td>{ props.name }</td>
+        <td>{ props.abbreviation }</td>
+      </tr>
+    );
   }
-
-  return (
-    <tr>
-      <th scope="row">{ props.number }</th>
-      <td>{ props.name }</td>
-      <td>{ abbreviation() }</td>
-    </tr>
-  );
 }
 
 

@@ -14,6 +14,83 @@ const Result = props => {
   const res = tilasto.Sukunimi.filter(name => filter(name));
   const names = res.sort()
 
+  const abbreviation = name => {
+    const replaced = name.replace('-', '');
+
+    return replaced.slice(0, 4);
+  }
+
+  const generateAbbreviations = () => {
+    const set = new Set()
+
+    names.forEach(element => {
+      const abbr = abbreviation(element);
+
+      set.add(abbr);
+    });
+
+    return Array.from(set.values());
+  }
+
+  const renderAbbreviationOnly = props => {
+    const abbreviations = generateAbbreviations();
+
+    return (
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"># ({ abbreviations.length })</th>
+            <th scope="col">Lyhenne</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            abbreviations.map((element, index) => {
+              return (
+                <Row key={index} number={index + 1} abbreviation={element} abbreviationOnly={true} />
+              );
+            })
+          }
+        </tbody>
+      </table>
+    );
+  }
+
+  const renderNameAndAbbreviation = props => {
+    return (
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"># ({ names.length })</th>
+            <th scope="col">Sukunimi</th>
+            <th scope="col">Lyhenne</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            names.map((element, index) => {
+              return (
+                <Row key={index} number={index + 1} name={element} abbreviation={abbreviation(element)} abbreviationOnly={false} />
+              );
+            })
+          }
+        </tbody>
+      </table>
+    );
+  }
+
+  const render = props => {
+    console.log(props.selection);
+
+    switch (props.selection) {
+      case 'lyhenne':
+        return renderAbbreviationOnly();
+      case 'nimi':
+      default:
+        return renderNameAndAbbreviation();
+    }
+  }
+
   return (
     <div className="container">
       <main>
@@ -25,24 +102,7 @@ const Result = props => {
 
           <hr className="my-3" />
 
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Sukunimi</th>
-                <th scope="col">Lyhenne</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                names.map((element, index) => {
-                  return (
-                    <Row key={index} number={index + 1} name={element} abbreviation={4} />
-                  );
-                })
-              }
-            </tbody>
-          </table>
+          { render(props) }
 
         </div>
       </main>

@@ -36,10 +36,11 @@ const Result = props => {
     const abbreviations = generateAbbreviations();
 
     return (
-      <table className="table table-striped">
+      <table className="table table-striped caption-top">
+        <caption>{ '1-' + abbreviations.length}</caption>
         <thead>
           <tr>
-            <th scope="col"># ({ abbreviations.length })</th>
+            <th scope="col">#</th>
             <th scope="col">Lyhenne</th>
           </tr>
         </thead>
@@ -58,10 +59,11 @@ const Result = props => {
 
   const renderNameAndAbbreviation = props => {
     return (
-      <table className="table table-striped">
+      <table className="table table-striped caption-top">
+        <caption>{ '1-' + names.length}</caption>
         <thead>
           <tr>
-            <th scope="col"># ({ names.length })</th>
+            <th scope="col">#</th>
             <th scope="col">Sukunimi</th>
             <th scope="col">Lyhenne</th>
           </tr>
@@ -84,10 +86,10 @@ const Result = props => {
 
     switch (props.selection) {
       case 'lyhenne':
-        return renderAbbreviationOnly();
+        return renderAbbreviationOnly(props);
       case 'nimi':
       default:
-        return renderNameAndAbbreviation();
+        return renderNameAndAbbreviation(props);
     }
   }
 
@@ -99,8 +101,6 @@ const Result = props => {
         </div>
 
         <div className="float-none py-5">
-
-          <hr className="my-3" />
 
           { render(props) }
 

@@ -2,7 +2,7 @@ const Row = props => {
   if (props.abbreviationOnly) {
     return (
       <tr>
-        <th scope="row"># ({ props.number })</th>
+        <th scope="row">{ props.number }</th>
         <td>{ props.abbreviation }</td>
       </tr>
     );

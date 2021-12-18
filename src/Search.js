@@ -49,7 +49,7 @@ function Search(props) {
       </main>
 
       <footer className="my-5 pt-5 text-muted text-center text-small">
-        <p className="mb-1">sami.pyy@gmail.com</p>
+        <a href='https://www.avoindata.fi/data/fi/dataset/none'>Väestötietojärjestelmän suomalaisten nimiaineistot</a>
       </footer>
     </div>
   );

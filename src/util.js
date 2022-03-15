@@ -7,7 +7,7 @@ export const openRequestedSinglePopup = url => {
 
   if(windowObjectReference == null || windowObjectReference.closed) {
     windowObjectReference = window.open(url, "SingleSecondaryWindowName", "popup");
-  } else if(PreviousUrl != url) {
+  } else if(PreviousUrl !== url) {
     windowObjectReference = window.open(url, "SingleSecondaryWindowName", "popup");
     /* if the resource to load is different,
        then we load it in the already opened secondary window and then

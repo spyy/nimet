@@ -20,14 +20,11 @@ const Firstname = props => {
     const uri = generateQuery();
 
     util.openRequestedSinglePopup(uri);
-
-    //props.onSelect(props.item.name);
   }
 
   return (
     <tr>
       <th scope="row">{ props.number }</th>
-      <td>{ props.lastname }</td>
       <td>{ props.item.name }</td>
       <td>{ props.item.count }</td>
       <td>

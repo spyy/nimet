@@ -6,8 +6,6 @@ import Firstname from './Firstname';
 const Firstnames = props => {
   let filteredFirstNames = [];
 
-  console.log(props);
-
   const filterMinCount = (item, minCount) => {
     const count = Number.parseInt(item.count);
 
@@ -28,9 +26,8 @@ const Firstnames = props => {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Sukunimi</th>
             <th scope="col">Etunimi</th>
-            <th scope="col">Määrä</th>
+            <th scope="col">Lukumäärä</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -52,6 +49,10 @@ const Firstnames = props => {
       <main>
         <div className="float-end py-3">
           <button type="button" className="btn-close" aria-label="Close" onClick={() => props.onClose()}></button>
+        </div>
+
+        <div className="py-3">
+          <h4 className="mb-3">{props.lastname}</h4>
         </div>
 
         <div className="float-none py-5">

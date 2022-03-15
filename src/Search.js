@@ -27,7 +27,7 @@ function Search(props) {
             <div className="row g-3 mb-3">
               <div className="col">
                 <select className="form-select" id="state" required="" value={props.namesMinimum} onChange={event => props.onNamesMinimum(event.target.value)}>
-                  <option value="500">Nimiä vähintään 500</option>
+                  <option value="500">Lukumäärä Suomessa vähintään 500</option>
                 </select>
               </div>
             </div>

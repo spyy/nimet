@@ -28,7 +28,7 @@ const Lastnames = props => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Sukunimi</th>
-            <th scope="col">Määrä</th>
+            <th scope="col">Lukumäärä</th>
             <th scope="col"></th>
           </tr>
         </thead>

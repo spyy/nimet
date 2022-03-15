@@ -11,6 +11,7 @@ function App() {
   const [namesMinimum, setNamesMinimum] = useState('500');
   const [alphabet, setAlphabet] = useState('A');
   const [lastname, setLastname] = useState('');
+  const [location, setLocation] = useState('');
 
   const onLastnameSelected = name => {
     console.log(name);
@@ -27,6 +28,7 @@ function App() {
           onClose={() => setScreenState('search')}
           namesMinimum={namesMinimum}
           selection={selection}
+          location={location}
           lastname={lastname} />
       );
     case 'lastnames':
@@ -47,6 +49,7 @@ function App() {
           selection={selection}
           alphabet={alphabet}
           onNamesMinimum={val => setNamesMinimum(val)}
+          onLocation={val => setLocation(val)}
           onChecked={val => setAlphabet(val)}
           onChange={val => setSelection(val)} />
       );

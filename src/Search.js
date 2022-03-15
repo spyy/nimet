@@ -32,6 +32,12 @@ function Search(props) {
               </div>
             </div>
 
+            <div className="row g-3 mb-3">
+              <div className="col">
+                <input type="text" className="form-control" id="place" placeholder="Paikka" value={props.location} onChange={event => props.onLocation(event.target.value)}></input>
+              </div>
+            </div>
+
             <hr className="my-4" />
 
             <h4 className="mb-3">Sukunimet aakkosittain</h4>

@@ -1,9 +1,25 @@
+import * as config from './config/conf.json';
+
+import * as util from './util';
+
 import ArrowRightCircle from './ArrowRightCircle';
+
+
 
 const Firstname = props => {
 
+  const generateQuery = () => {
+    const what = props.lastname + '+' + props.item.name;
+    const location = 'location=' + props.location;
+    const uri = config.address.replace('what', what);
+
+    return uri.replace('location', location);
+  }
+
   const onSelect = () => {
-    console.log(props.item.name);
+    const uri = generateQuery();
+
+    util.openRequestedSinglePopup(uri);
 
     //props.onSelect(props.item.name);
   }

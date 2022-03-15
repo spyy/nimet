@@ -38,7 +38,7 @@ const Firstnames = props => {
           {
             filteredFirstNames.map((element, index) => {
               return (
-                <Firstname key={index} number={index + 1} lastname={props.lastname} item={element} />
+                <Firstname key={index} number={index + 1} lastname={props.lastname} item={element} location={props.location} />
               );
             })
           }

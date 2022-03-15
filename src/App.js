@@ -1,20 +1,55 @@
 import React, { useState } from 'react';
 
 import Search from './Search';
-import Result from './Result';
+import Firstnames from './Firstnames';
+import Lastnames from './Lastnames';
 
 
 function App() {
   const [screenState, setScreenState] = useState('search');
-  const [selection, setSelection] = useState('nimi');
+  const [selection, setSelection] = useState('miehet');
+  const [namesMinimum, setNamesMinimum] = useState('500');
   const [alphabet, setAlphabet] = useState('A');
+  const [lastname, setLastname] = useState('');
+
+  const onLastnameSelected = name => {
+    console.log(name);
+
+    setLastname(name);
+
+    setScreenState('firstnames');
+  }
 
   switch (screenState) {
-    case 'result':
-      return <Result onClose={() => setScreenState('search')} selection={selection} alphabet={alphabet} />
+    case 'firstnames':
+      return (
+        <Firstnames
+          onClose={() => setScreenState('search')}
+          namesMinimum={namesMinimum}
+          selection={selection}
+          lastname={lastname} />
+      );
+    case 'lastnames':
+      return (
+        <Lastnames
+          onClose={() => setScreenState('search')}
+          onLastnameSelected={name => onLastnameSelected(name)}
+          namesMinimum={namesMinimum}
+          selection={selection}
+          alphabet={alphabet} />
+      );
     case 'search':
     default:
-      return <Search onSearch={() => setScreenState('result')} selection={selection} alphabet={alphabet} onChecked={val => setAlphabet(val)} onChange={val => setSelection(val)} />
+      return (
+        <Search
+          onSearch={() => setScreenState('lastnames')}
+          namesMinimum={namesMinimum}
+          selection={selection}
+          alphabet={alphabet}
+          onNamesMinimum={val => setNamesMinimum(val)}
+          onChecked={val => setAlphabet(val)}
+          onChange={val => setSelection(val)} />
+      );
   }
 }
 

@@ -1,96 +1,87 @@
 import Row from './Row';
 
-import * as tilasto from './config/sukunimitilasto-2021-08-09-dvv.json';
+import * as sukunimet from './config/sukunimet.json';
+import * as miehet from './config/miehet.json';
+
+//const sukunimet = require('./config/sukunimitilasto-2022-02-07-dvv.json');
+//const miehet = require('./config/etunimitilasto-2022-02-07-dvv.miehet.json');
 
 
 const Result = props => {
 
-  const filter = name => {
-    let re = new RegExp('^' + props.alphabet, 'i');
+  const filterLetter = (item, letter, minCount) => {
+    let re = new RegExp('^' + letter, 'i');
+    const count = Number.parseInt(item.count);
+    const min = Number.parseInt(minCount);
 
-    return name.match(re) ? true : false;
+    if (count < min) {
+      return false;
+    } else {
+      return item.name.match(re) ? true : false;
+    }
   }
 
-  const res = tilasto.Sukunimi.filter(name => filter(name));
-  const names = res.sort()
+  const filterMinCount = (item, minCount) => {
+    const count = Number.parseInt(item.count);
 
-  const abbreviation = name => {
-    const replaced = name.replace('-', '');
-
-    return replaced.slice(0, 4);
+    return count < minCount ? false : true;
   }
 
-  const generateAbbreviations = () => {
-    const set = new Set()
 
-    names.forEach(element => {
-      const abbr = abbreviation(element);
+  console.log(props);
 
-      set.add(abbr);
+
+  const filteredLastnames = sukunimet.nimet.filter(item => filterLetter(item, props.alphabet, props.namesMinimum));
+  let filteredFirstNames = [];
+  let result = [];
+
+  switch (props.selection) {
+    case 'naiset':
+    case 'miehet':
+    default:
+      filteredFirstNames = miehet.nimet.filter(item => filterMinCount(item, props.namesMinimum));
+  }
+
+  let lastNames = filteredLastnames.map(element => element.name);
+  let firstNames = filteredFirstNames.map(element => element.name);
+
+  console.log(lastNames.length);
+  console.log(firstNames.length);
+
+
+  lastNames.sort().forEach(lastName => {
+    firstNames.sort().forEach(firstName => {
+      result.push(lastName + ' ' + firstName);
     });
+  });
 
-    return Array.from(set.values());
-  }
 
-  const renderAbbreviationOnly = props => {
-    const abbreviations = generateAbbreviations();
+  console.log(result.length);
 
+
+  const render = props => {
     return (
       <table className="table table-striped caption-top">
-        <caption>{ '1-' + abbreviations.length}</caption>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Lyhenne</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            abbreviations.map((element, index) => {
-              return (
-                <Row key={index} number={index + 1} abbreviation={element} abbreviationOnly={true} />
-              );
-            })
-          }
-        </tbody>
-      </table>
-    );
-  }
-
-  const renderNameAndAbbreviation = props => {
-    return (
-      <table className="table table-striped caption-top">
-        <caption>{ '1-' + names.length}</caption>
+        <caption>{ '1-' + result.length}</caption>
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Sukunimi</th>
-            <th scope="col">Lyhenne</th>
+            <th scope="col">Etunimi</th>
+            <th scope="col">Kopioi</th>
           </tr>
         </thead>
         <tbody>
           {
-            names.map((element, index) => {
+            result.map((element, index) => {
               return (
-                <Row key={index} number={index + 1} name={element} abbreviation={abbreviation(element)} abbreviationOnly={false} />
+                <Row key={index} number={index + 1} name={element} />
               );
             })
           }
         </tbody>
       </table>
     );
-  }
-
-  const render = props => {
-    console.log(props.selection);
-
-    switch (props.selection) {
-      case 'lyhenne':
-        return renderAbbreviationOnly(props);
-      case 'nimi':
-      default:
-        return renderNameAndAbbreviation(props);
-    }
   }
 
   return (

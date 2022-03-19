@@ -52,7 +52,7 @@ const Firstnames = props => {
         </div>
 
         <div className="py-3">
-          <h4 className="mb-3">{props.lastname}</h4>
+          <h4>{props.lastname}</h4>
         </div>
 
         <div className="float-none py-5">

@@ -9,38 +9,36 @@ function Search(props) {
       <main>
         <div className="py-5 text-center">
           <h2>Suomen nimet</h2>
-          <p className="lead">Hae nimet aakkosittain.</p>
+          <p className="lead">Valitse ensin sukunimi ja tee haku valitsemalla etunimi</p>
 
           <hr className="my-4" />
-
-          <h4 className="mb-3">Haun tulos</h4>
 
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div className="row g-3 mb-3">
               <div className="col">
                 <select className="form-select" id="state" required="" value={props.selection} onChange={event => props.onChange(event.target.value)}>
-                  <option value="miehet">Miesten nimet</option>
+                  <option value="miehet">Miesten etunimet</option>
                 </select>
-              </div>
-            </div>
-
-            <div className="row g-3 mb-3">
-              <div className="col">
-                <select className="form-select" id="state" required="" value={props.namesMinimum} onChange={event => props.onNamesMinimum(event.target.value)}>
-                  <option value="500">Lukumäärä Suomessa vähintään 500</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="row g-3 mb-3">
-              <div className="col">
-                <input type="text" className="form-control" id="place" placeholder="Paikka" value={props.location} onChange={event => props.onLocation(event.target.value)}></input>
               </div>
             </div>
 
             <hr className="my-4" />
 
-            <h4 className="mb-3">Sukunimet aakkosittain</h4>
+            <h5 className="mb-3">Nimien lukumäärä Suomessa</h5>
+
+            <div className="row g-3 mb-3">
+              <div className="col">
+                <select className="form-select" id="state" required="" value={props.namesMinimum} onChange={event => props.onNamesMinimum(event.target.value)}>
+                  <option value="500">Vähintään 500</option>
+                  <option value="1000">Vähintään 1000</option>
+                  <option value="2000">Vähintään 2000</option>
+                </select>
+              </div>
+            </div>
+
+            <hr className="my-4" />
+
+            <h5 className="mb-3">Sukunimet aakkosittain</h5>
 
             <div className="my-3">
               <div className="row">
@@ -56,7 +54,17 @@ function Search(props) {
 
             <hr className="my-4" />
 
-            <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()}>Hae nimistä</button>
+            <h5 className="mb-3">Haku</h5>
+
+            <div className="row g-3 mb-3">
+              <div className="col">
+                <input type="text" className="form-control" id="place" placeholder="Paikka (postinumero)" value={props.location} onChange={event => props.onLocation(event.target.value)}></input>
+              </div>
+            </div>
+
+            <hr className="my-4" />
+
+            <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()}>Aloita</button>
           </div>
         </div>
       </main>

@@ -7,19 +7,17 @@ import ArrowRightCircle from './ArrowRightCircle';
 
 
 const Firstname = props => {
-
-  const generateQuery = () => {
-    const what = props.lastname + '+' + props.item.name;
-    const location = 'location=' + props.location;
-    const uri = config.address.replace('what', what);
-
-    return uri.replace('location', location);
-  }
+  const what = props.lastname + '+' + props.item.name;
+  const location = 'location=' + props.location;
+  const uri = config.address.replace('what', what);
+  const url = uri.replace('location', location);
 
   const onSelect = () => {
-    const uri = generateQuery();
+    const y = window.scrollY;
 
-    util.openRequestedSinglePopup(uri);
+    props.onWinY(y);
+
+    util.openRequestedSinglePopup(url);
   }
 
   return (

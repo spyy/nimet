@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+
 import * as miehet from './config/miehet.json';
 
 import Firstname from './Firstname';
@@ -5,6 +7,27 @@ import Firstname from './Firstname';
 
 const Firstnames = props => {
   let filteredFirstNames = [];
+  let scrollListener = undefined;
+  let winY = 0;
+
+  const onEventScroll = event => {
+    if (winY > 0) {
+      window.scrollTo(0, winY);
+      winY = 0;
+    }
+  }
+
+  useEffect(() => {
+    scrollListener = window.addEventListener('scroll', onEventScroll);
+
+    return () => {
+      if (scrollListener) {
+        scrollListener.remove();
+
+        scrollListener = undefined;
+      }
+    };
+  });
 
   const filterMinCount = (item, minCount) => {
     const count = Number.parseInt(item.count);
@@ -17,6 +40,12 @@ const Firstnames = props => {
     case 'miehet':
     default:
       filteredFirstNames = miehet.nimet.filter(item => filterMinCount(item, props.namesMinimum));
+  }
+
+  const onWinY = val => {
+    console.log('onWinY:' + val);
+
+    winY = val;
   }
 
   const render = props => {
@@ -35,7 +64,7 @@ const Firstnames = props => {
           {
             filteredFirstNames.map((element, index) => {
               return (
-                <Firstname key={index} number={index + 1} lastname={props.lastname} item={element} location={props.location} />
+                <Firstname key={index} number={index + 1} lastname={props.lastname} item={element} location={props.location} onWinY={val => onWinY(val)} />
               );
             })
           }
@@ -55,7 +84,7 @@ const Firstnames = props => {
           <h4>{props.lastname}</h4>
         </div>
 
-        <div className="float-none py-5">
+        <div className="float-none py-3">
 
           { render(props) }
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import * as miehet from './config/miehet.json';
+import * as naiset from './config/naiset.json';
 
 import Firstname from './Firstname';
 
@@ -37,9 +38,12 @@ const Firstnames = props => {
 
   switch (props.selection) {
     case 'naiset':
+      filteredFirstNames = naiset.nimet.filter(item => filterMinCount(item, props.namesMinimum));
+      break;
     case 'miehet':
     default:
       filteredFirstNames = miehet.nimet.filter(item => filterMinCount(item, props.namesMinimum));
+      break;
   }
 
   const onWinY = val => {

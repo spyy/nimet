@@ -18,6 +18,7 @@ function Search(props) {
               <div className="col">
                 <select className="form-select" id="state" required="" value={props.selection} onChange={event => props.onChange(event.target.value)}>
                   <option value="miehet">Miesten etunimet</option>
+                  <option value="naiset">Naisten etunimet</option>
                 </select>
               </div>
             </div>

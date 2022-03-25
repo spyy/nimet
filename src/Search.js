@@ -31,8 +31,8 @@ function Search(props) {
               <div className="col">
                 <select className="form-select" id="state" required="" value={props.namesMinimum} onChange={event => props.onNamesMinimum(event.target.value)}>
                   <option value="500">Vähintään 500</option>
-                  <option value="1000">Vähintään 1000</option>
-                  <option value="2000">Vähintään 2000</option>
+                  <option value="1500">Vähintään 1500</option>
+                  <option value="2500">Vähintään 2500</option>
                 </select>
               </div>
             </div>
@@ -71,8 +71,8 @@ function Search(props) {
       </main>
 
       <footer className="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">Versio 1.1</p>
         <a href='https://www.avoindata.fi/data/fi/dataset/none'>Väestötietojärjestelmän suomalaisten nimiaineistot</a>
+        <p class="mb-1">Versio 1.2</p>
       </footer>
     </div>
   );

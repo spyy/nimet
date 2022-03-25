@@ -15,7 +15,7 @@ const Firstname = props => {
   const onSelect = () => {
     const y = window.scrollY;
 
-    props.onWinY(y);
+    //props.onWinY(y);
 
     util.openRequestedSinglePopup(url);
   }

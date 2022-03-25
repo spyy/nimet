@@ -8,7 +8,7 @@ import Lastnames from './Lastnames';
 function App() {
   const [screenState, setScreenState] = useState('search');
   const [selection, setSelection] = useState('miehet');
-  const [namesMinimum, setNamesMinimum] = useState('2000');
+  const [namesMinimum, setNamesMinimum] = useState('2500');
   const [alphabet, setAlphabet] = useState('A');
   const [lastname, setLastname] = useState('');
   const [location, setLocation] = useState('');

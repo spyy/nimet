@@ -8,10 +8,11 @@ import Lastnames from './Lastnames';
 function App() {
   const [screenState, setScreenState] = useState('search');
   const [selection, setSelection] = useState('miehet');
-  const [namesMinimum, setNamesMinimum] = useState('2500');
+  const [namesMinimum, setNamesMinimum] = useState('1000');
   const [alphabet, setAlphabet] = useState('A');
   const [lastname, setLastname] = useState('');
   const [location, setLocation] = useState('');
+  const [useTablet, setUseTablet] = useState(false);
 
   const onLastnameSelected = name => {
     setLastname(name);
@@ -24,6 +25,7 @@ function App() {
       return (
         <Firstnames
           onClose={() => setScreenState('search')}
+          useTablet={useTablet}
           namesMinimum={namesMinimum}
           selection={selection}
           location={location}
@@ -46,6 +48,8 @@ function App() {
           namesMinimum={namesMinimum}
           selection={selection}
           alphabet={alphabet}
+          useTablet={useTablet}
+          onUseTablet={() => setUseTablet(!useTablet)}
           onNamesMinimum={val => setNamesMinimum(val)}
           onLocation={val => setLocation(val)}
           onChecked={val => setAlphabet(val)}

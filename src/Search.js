@@ -31,8 +31,8 @@ function Search(props) {
               <div className="col">
                 <select className="form-select" id="state" required="" value={props.namesMinimum} onChange={event => props.onNamesMinimum(event.target.value)}>
                   <option value="500">Vähintään 500</option>
-                  <option value="1500">Vähintään 1500</option>
-                  <option value="2500">Vähintään 2500</option>
+                  <option value="1000">Vähintään 1000</option>
+                  <option value="2000">Vähintään 2000</option>
                 </select>
               </div>
             </div>
@@ -68,11 +68,16 @@ function Search(props) {
             <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()}>Aloita</button>
           </div>
         </div>
+
+        <div className="form-check">
+          <input type="checkbox" class="form-check-input" id="same-address" checked={props.useTablet} onChange={e => props.onUseTablet()}></input>
+          <label className="form-check-label" for="same-address">Käytän tablettia</label>
+        </div>
       </main>
 
       <footer className="my-5 pt-5 text-muted text-center text-small">
         <a href='https://www.avoindata.fi/data/fi/dataset/none'>Väestötietojärjestelmän suomalaisten nimiaineistot</a>
-        <p class="mb-1">Versio 1.2</p>
+        <p class="mb-1">Versio 1.3</p>
       </footer>
     </div>
   );

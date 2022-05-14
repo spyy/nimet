@@ -46,12 +46,6 @@ const Firstnames = props => {
       break;
   }
 
-  const onWinY = val => {
-    console.log('onWinY:' + val);
-
-    winY = val;
-  }
-
   const render = props => {
     return (
       <table className="table table-striped caption-top">
@@ -68,7 +62,7 @@ const Firstnames = props => {
           {
             filteredFirstNames.map((element, index) => {
               return (
-                <Firstname key={index} number={index + 1} lastname={props.lastname} item={element} location={props.location} onWinY={val => onWinY(val)} />
+                <Firstname key={index} number={index + 1} lastname={props.lastname} item={element} location={props.location} useTablet={props.useTablet} />
               );
             })
           }

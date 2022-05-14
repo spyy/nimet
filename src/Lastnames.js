@@ -18,7 +18,21 @@ const Lastnames = props => {
     }
   }
 
+  const sortByName = (a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  }
+
   const filteredLastnames = sukunimet.nimet.filter(item => filterLetter(item, props.alphabet, props.namesMinimum));
+
+  filteredLastnames.sort(sortByName);
 
   const render = props => {
     return (

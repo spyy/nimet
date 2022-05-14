@@ -13,9 +13,6 @@ const Firstname = props => {
   const url = uri.replace('location', location);
 
   const onSelect = () => {
-    const y = window.scrollY;
-
-    //props.onWinY(y);
 
     util.openRequestedSinglePopup(url);
   }
@@ -26,7 +23,7 @@ const Firstname = props => {
       <td>{ props.item.name }</td>
       <td>{ props.item.count }</td>
       <td>
-        <ArrowRightCircle onPress={onSelect} />
+        <ArrowRightCircle useTablet={props.useTablet} url={url} onPress={onSelect} />
       </td>
     </tr>
   );

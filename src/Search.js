@@ -1,8 +1,18 @@
-import alphabets from './config/alphabets.json';
-import Alphabet from './Alphabet';
 
 
 function Search(props) {
+
+  const renderButton = props => {
+    if (props.location.length && props.lastname.length) {
+      return (
+        <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()}>Aloita</button>
+      );
+    } else {
+      return (
+        <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()} disabled>Aloita</button>
+      );
+    }
+  }
 
   return (
     <div className="container">
@@ -25,36 +35,6 @@ function Search(props) {
 
             <hr className="my-4" />
 
-            <h5 className="mb-3">Nimien lukumäärä Suomessa</h5>
-
-            <div className="row g-3 mb-3">
-              <div className="col">
-                <select className="form-select" id="state" required="" value={props.namesMinimum} onChange={event => props.onNamesMinimum(event.target.value)}>
-                  <option value="500">Vähintään 500</option>
-                  <option value="1000">Vähintään 1000</option>
-                  <option value="2000">Vähintään 2000</option>
-                </select>
-              </div>
-            </div>
-
-            <hr className="my-4" />
-
-            <h5 className="mb-3">Sukunimet aakkosittain</h5>
-
-            <div className="my-3">
-              <div className="row">
-                {
-                  alphabets.map((element, index) => {
-                    return (
-                      <Alphabet key={index} alphabet={element} checked={props.alphabet} onChecked={val => props.onChecked(val)} />
-                    );
-                  })
-                }
-              </div>
-            </div>
-
-            <hr className="my-4" />
-
             <h5 className="mb-3">Haku</h5>
 
             <div className="row g-3 mb-3">
@@ -63,9 +43,15 @@ function Search(props) {
               </div>
             </div>
 
+            <div className="row g-3 mb-3">
+              <div className="col">
+                <input type="text" className="form-control" id="lastname" placeholder="Sukunimi" value={props.lastname} onChange={event => props.onLastname(event.target.value)}></input>
+              </div>
+            </div>
+
             <hr className="my-4" />
 
-            <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => props.onSearch()}>Aloita</button>
+            { renderButton(props) }
           </div>
         </div>
 

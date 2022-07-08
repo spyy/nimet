@@ -18,8 +18,8 @@ function Search(props) {
     <div className="container">
       <main>
         <div className="py-5 text-center">
-          <h2>Suomen nimet</h2>
-          <p className="lead">Valitse ensin sukunimi ja tee haku valitsemalla etunimi</p>
+          <h2>Nimi haku</h2>
+          <p className="lead">Anna ensin paikka ja sukunimi. Paina sitten aloita.</p>
 
           <hr className="my-4" />
 

@@ -1,6 +1,6 @@
 {
-  "short_name": "Sukunimet",
-  "name": "Sukunimien analysointia",
+  "short_name": "Nimet",
+  "name": "Nimi haku",
   "icons": [
     {
       "src": "favicon.ico",

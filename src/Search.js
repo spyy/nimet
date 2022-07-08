@@ -63,7 +63,7 @@ function Search(props) {
 
       <footer className="my-5 pt-5 text-muted text-center text-small">
         <a href='https://www.avoindata.fi/data/fi/dataset/none'>Väestötietojärjestelmän suomalaisten nimiaineistot</a>
-        <p class="mb-1">Versio 1.3</p>
+        <p class="mb-1">Versio 1.4</p>
       </footer>
     </div>
   );

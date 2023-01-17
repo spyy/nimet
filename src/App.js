@@ -5,14 +5,41 @@ import Firstnames from './Firstnames';
 
 
 function App() {
+  const defaultPrefs = {
+    selection: 'miehet',
+    lastname: '',
+    location: '',
+    useTablet: false
+  }
+  const item = localStorage.getItem('prefs');
+  const prefs = item ? JSON.parse(item) : defaultPrefs;
+
   const [screenState, setScreenState] = useState('search');
-  const [selection, setSelection] = useState('miehet');
-  const [namesMinimum, setNamesMinimum] = useState('500');
-  const [lastname, setLastname] = useState('');
-  const [location, setLocation] = useState('');
-  const [useTablet, setUseTablet] = useState(false);
+  const [namesMinimum, setNamesMinimum] = useState('1000');
+  
+  const [selection, setSelection] = useState(prefs.selection);
+  const [lastname, setLastname] = useState(prefs.lastname);
+  const [location, setLocation] = useState(prefs.location);
+  const [useTablet, setUseTablet] = useState(prefs.useTablet);
 
 
+  const savePrefs = () => {
+    const item = {
+      selection: selection,
+      lastname: lastname,
+      location: location,
+      useTablet: useTablet
+    }
+
+    localStorage.setItem('prefs', JSON.stringify(item));
+  }
+
+  const onSearch = () => {
+    savePrefs();
+
+    setScreenState('firstnames');
+  }
+  
 
   switch (screenState) {
     case 'firstnames':
@@ -29,7 +56,7 @@ function App() {
     default:
       return (
         <Search
-          onSearch={() => setScreenState('firstnames')}
+          onSearch={ onSearch }
           selection={selection}
           location={location}
           lastname={lastname}

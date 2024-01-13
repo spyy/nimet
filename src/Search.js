@@ -56,14 +56,14 @@ function Search(props) {
         </div>
 
         <div className="form-check">
-          <input type="checkbox" class="form-check-input" id="same-address" checked={props.useTablet} onChange={e => props.onUseTablet()}></input>
-          <label className="form-check-label" for="same-address">Käytän tablettia</label>
+          <input type="checkbox" class="form-check-input" id="same-address" checked={props.useTablet} onChange={e => props.onUseTablet()} hidden></input>
+          <label className="form-check-label" for="same-address" hidden>Käytän tablettia</label>
         </div>
       </main>
 
       <footer className="my-5 pt-5 text-muted text-center text-small">
         <a href='https://www.avoindata.fi/data/fi/dataset/none'>Väestötietojärjestelmän suomalaisten nimiaineistot</a>
-        <p class="mb-1">Versio 1.5</p>
+        <p class="mb-1">Versio 1.6</p>
       </footer>
     </div>
   );

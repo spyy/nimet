@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import * as miehet from './config/miehet.json';
 import * as naiset from './config/naiset.json';
@@ -8,27 +8,7 @@ import Firstname from './Firstname';
 
 const Firstnames = props => {
   let filteredFirstNames = [];
-  let scrollListener = undefined;
-  let winY = 0;
 
-  const onEventScroll = event => {
-    if (winY > 0) {
-      window.scrollTo(0, winY);
-      winY = 0;
-    }
-  }
-
-  useEffect(() => {
-    scrollListener = window.addEventListener('scroll', onEventScroll);
-
-    return () => {
-      if (scrollListener) {
-        scrollListener.remove();
-
-        scrollListener = undefined;
-      }
-    };
-  });
 
   const filterMinCount = (item, minCount) => {
     const count = Number.parseInt(item.count);

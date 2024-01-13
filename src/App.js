@@ -18,7 +18,7 @@ function App() {
   const [namesMinimum, setNamesMinimum] = useState('1000');
   
   const [selection, setSelection] = useState(prefs.selection);
-  const [lastname, setLastname] = useState(prefs.lastname);
+  const [lastname, setLastname] = useState('');
   const [location, setLocation] = useState(prefs.location);
   const [useTablet, setUseTablet] = useState(prefs.useTablet);
 

@@ -7,11 +7,9 @@ import ArrowRightCircle from './ArrowRightCircle';
 
 
 const Firstname = props => {
-  const what = props.lastname + '+' + props.item.name;
-  const location = 'location=' + props.location;
-  const uri = config.address.replace('what', what);
-  const url = uri.replace('location', location);
-
+  const what = props.location + '+' + props.lastname + '+' + props.item.name;
+  const url = config.address.replace('what', what);
+  
   const onSelect = () => {
 
     util.openRequestedSinglePopup(url);
